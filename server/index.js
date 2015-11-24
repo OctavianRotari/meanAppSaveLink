@@ -26,8 +26,15 @@ app.use(function(req, res, next) {
 mongoose.connect('mongodb://localhost/meanapp');
 mongoose.connection.once('open', function() {
 
-  //loads all the modules
-  app.models = require('./models/index');
+  // Load the models.
+  app.models = require('./models/index.js');
+
+  // Load the routes.
+  var routes = require('./routes.js');
+  _.each(routes, function(controller, route) {
+    app.use(route, controller(app, route));
+  });
+
 
   console.log('Listening on port 3000...');
   app.listen(3000);

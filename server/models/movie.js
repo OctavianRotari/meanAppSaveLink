@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// Create the MovieSchema.
 var MovieSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -11,4 +12,5 @@ var MovieSchema = new mongoose.Schema({
   }
 });
 
-module.exports = MovieSchema;
+// Export the model.
+module.exports = mongoose.model('movie', MovieSchema);
